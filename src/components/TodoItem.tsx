@@ -1,7 +1,12 @@
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Todo } from "../types/todo.type";
 
-function TodoItem({ todo }, ref) {
+type TodoItemProps = {
+  todo: Todo;
+};
+
+function TodoItem({ todo }: TodoItemProps, ref: ForwardedRef<HTMLLIElement>) {
   const navigate = useNavigate();
   return (
     <li
