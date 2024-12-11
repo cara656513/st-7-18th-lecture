@@ -28,6 +28,7 @@
     length: number;
   };
 
+  // length 속성을 갖는 객체만 매개변수로 받는 함수 정의
   function logLength<T extends HasLength>(item: T): void {
     console.log(item.length);
   }

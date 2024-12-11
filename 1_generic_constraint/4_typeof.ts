@@ -9,13 +9,13 @@
   type PersonType = typeof person;
 
   // 객체 타입의 키들을 유니언 타입으로 추출
-  type PersonKeys = keyof PersonType; // 'name' | 'age' | 'email'
+  type PersonKey = keyof PersonType; // 'name' | 'age' | 'email'
 
   // 제네릭 함수를 사용하여 객체의 특정 속성에 접근
   const getProperty = (
     obj: PersonType,
-    key: PersonKeys,
-  ): PersonType[PersonKeys] => {
+    key: PersonKey,
+  ): PersonType[PersonKey] => {
     return obj[key];
   };
 

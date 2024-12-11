@@ -4,7 +4,7 @@ type PersonType = {
   location: string;
 };
 
-type PersonKeys = keyof PersonType; // "name" | "age" | "location"
+type PersonKey = keyof PersonType; // "name" | "age" | "location"
 
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
@@ -18,4 +18,4 @@ const person: PersonType = {
 
 const personName = getProperty(person, "name");
 const personAge = getProperty(person, "age");
-// const personAge = getProperty(person, "height");
+// const personHeight = getProperty(person, "height");
