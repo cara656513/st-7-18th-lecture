@@ -2,6 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import TodoItem from "./TodoItem";
+import { Todo } from "../pages/Detail";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -13,12 +14,12 @@ export default function TodoList() {
     isFetchingNextPage,
     isPending,
     error,
-  } = useInfiniteQuery({
+  } = useInfiniteQuery<Todo[], Error, Todo[], [string], number>({
     queryKey: ["todos"],
     initialPageParam: 1,
     queryFn: async ({ pageParam }) => {
       const response = await fetch(
-        `http://localhost:4000/todos?_page=${pageParam}&_limit=${ITEMS_PER_PAGE}`,
+        `http://localhost:4000/todos?_page=${pageParam}&_limit=${ITEMS_PER_PAGE}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch todos");

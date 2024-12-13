@@ -1,12 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { Todo } from "../pages/Detail";
 
 export default function TodoForm() {
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [contents, setContents] = useState<string>("");
 
   const queryClient = useQueryClient();
-  const addMutation = useMutation({
+  const addMutation = useMutation<unknown, Error, Todo>({
     mutationFn: async (newTodo) => {
       const response = await fetch("http://localhost:4000/todos", {
         method: "POST",
@@ -25,7 +26,7 @@ export default function TodoForm() {
     },
   });
 
-  const handleAddTodo = async (e) => {
+  const handleAddTodo: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setTitle("");
     setContents("");

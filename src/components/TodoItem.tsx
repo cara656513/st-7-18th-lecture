@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Todo } from "../pages/Detail";
 
-function TodoItem({ todo }, ref) {
+function TodoItem({ todo }: { todo: Todo }, ref: ForwardedRef<HTMLLIElement>) {
   const navigate = useNavigate();
   return (
     <li

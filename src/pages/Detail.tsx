@@ -2,12 +2,26 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetail } from "../api/todos";
 
+export type Todo = {
+  id: string;
+  title: string;
+  contents: string;
+  isCompleted: boolean;
+  liked: boolean;
+  createdAt: number;
+};
+
 export default function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data, isPending, error } = useQuery({
-    queryKey: ["todos", id],
+  const { data, isPending, error } = useQuery<
+    Todo,
+    Error,
+    Todo,
+    [string, string]
+  >({
+    queryKey: ["todos", id!],
     queryFn: getDetail,
   });
 

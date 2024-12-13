@@ -1,4 +1,6 @@
-export const getDetail = async ({ queryKey }) => {
+import { QueryFunctionContext } from "@tanstack/react-query";
+
+export const getDetail = async ({ queryKey }: QueryFunctionContext) => {
   const [_, id] = queryKey;
 
   const response = await fetch(`http://localhost:4000/todos/${id}`);
